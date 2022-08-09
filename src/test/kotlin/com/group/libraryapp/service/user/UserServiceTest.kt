@@ -3,6 +3,7 @@ package com.group.libraryapp.service.user
 import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
 import com.group.libraryapp.dto.user.request.UserCreateRequest
+import com.group.libraryapp.dto.user.request.UserUpdateRequest
 import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
@@ -49,5 +50,19 @@ class UserServiceTest @Autowired constructor(
         assertThat(results).hasSize(2)
         assertThat(results).extracting("name").containsExactlyInAnyOrder("A", "B")
         assertThat(results).extracting("age").containsExactlyInAnyOrder(20, null)
+    }
+
+    @Test
+    fun updateUserName() {
+        // given
+        val savedUser = userRepository.save(User("A", null))
+        val request = UserUpdateRequest(savedUser.id, "B")
+
+        // when
+        userService.updateUserName(request)
+
+        // then
+        val result = userRepository.findAll()[0]
+        assertThat(result.name).isEqualTo("B")
     }
 }
