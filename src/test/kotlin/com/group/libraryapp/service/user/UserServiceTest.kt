@@ -1,6 +1,6 @@
 package com.group.libraryapp.service.user
 
-import com.group.libraryapp.domain.user.User
+import com.group.libraryapp.domain.user.JavaUser
 import com.group.libraryapp.domain.user.UserRepository
 import com.group.libraryapp.dto.user.request.UserCreateRequest
 import com.group.libraryapp.dto.user.request.UserUpdateRequest
@@ -42,8 +42,8 @@ class UserServiceTest @Autowired constructor(
     fun getUsers() {
         // given
         userRepository.saveAll(listOf(
-            User("A", 20),
-            User("B", null),
+            JavaUser("A", 20),
+            JavaUser("B", null),
         ))
 
         // when
@@ -59,7 +59,7 @@ class UserServiceTest @Autowired constructor(
     @DisplayName("유저명 수정이 정상 동작한다")
     fun updateUserName() {
         // given
-        val savedUser = userRepository.save(User("A", null))
+        val savedUser = userRepository.save(JavaUser("A", null))
         val request = UserUpdateRequest(savedUser.id, "B")
 
         // when
@@ -74,7 +74,7 @@ class UserServiceTest @Autowired constructor(
     @DisplayName("유저 삭제가 정상 동작한다")
     fun deleteUser() {
         // given
-        val savedUser = userRepository.save(User("A", null))
+        val savedUser = userRepository.save(JavaUser("A", null))
 
         // when
         userService.deleteUser("A")
