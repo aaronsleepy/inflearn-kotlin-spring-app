@@ -6,7 +6,7 @@ fun main() {
     val calculatorTest = CalculatorTest()
     calculatorTest.addTest()
     calculatorTest.minusTest()
-    calculatorTest.multilpyTest()
+    calculatorTest.multiplyTest()
 }
 
 class CalculatorTest {
@@ -37,7 +37,7 @@ class CalculatorTest {
         }
     }
 
-    fun multilpyTest() {
+    fun multiplyTest() {
         // given
         val calculator = Calculator(5)
 
