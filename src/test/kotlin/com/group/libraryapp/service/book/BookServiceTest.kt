@@ -2,7 +2,7 @@ package com.group.libraryapp.service.book
 
 import com.group.libraryapp.domain.book.Book
 import com.group.libraryapp.domain.book.BookRepository
-import com.group.libraryapp.domain.user.JavaUser
+import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository
@@ -50,7 +50,7 @@ class BookServiceTest @Autowired constructor(
     fun loanBook() {
         // given
         bookRepository.save(Book("이상한 나라의 앨리스"))
-        val savedUser = userRepository.save(JavaUser("송준이", 23))
+        val savedUser = userRepository.save(User("송준이", 23))
         val request = BookLoanRequest("송준이", "이상한 나라의 앨리스")
 
         // when
@@ -69,7 +69,7 @@ class BookServiceTest @Autowired constructor(
     fun loadBookFailed() {
         // given
         bookRepository.save(Book("이상한 나라의 앨리스"))
-        val savedUser = userRepository.save(JavaUser("송준이", 23))
+        val savedUser = userRepository.save(User("송준이", 23))
         userLoanHistoryRepository.save(
             UserLoanHistory(
                 savedUser,
@@ -92,7 +92,7 @@ class BookServiceTest @Autowired constructor(
     fun returnBook() {
         // given
         bookRepository.save(Book("이상한 나라의 앨리스"))
-        val savedUser = userRepository.save(JavaUser("송준이", 23))
+        val savedUser = userRepository.save(User("송준이", 23))
         userLoanHistoryRepository.save(
             UserLoanHistory(
                 savedUser,
