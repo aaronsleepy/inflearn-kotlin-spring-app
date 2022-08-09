@@ -5,6 +5,8 @@ import kotlin.IllegalArgumentException
 fun main() {
     val calculatorTest = CalculatorTest()
     calculatorTest.addTest()
+    calculatorTest.minusTest()
+    calculatorTest.multilpyTest()
 }
 
 class CalculatorTest {
@@ -18,6 +20,32 @@ class CalculatorTest {
 
         // then
         if (calculator.number != 8) {
+            throw IllegalArgumentException("addTest failed")
+        }
+    }
+
+    fun minusTest() {
+        // given
+        val calculator = Calculator(5)
+
+        // when
+        calculator.minus(3)
+
+        // then
+        if (calculator.number != 2) {
+            throw IllegalArgumentException("addTest failed")
+        }
+    }
+
+    fun multilpyTest() {
+        // given
+        val calculator = Calculator(5)
+
+        // when
+        calculator.multiply(3)
+
+        // then
+        if (calculator.number != 15) {
             throw IllegalArgumentException("addTest failed")
         }
     }
