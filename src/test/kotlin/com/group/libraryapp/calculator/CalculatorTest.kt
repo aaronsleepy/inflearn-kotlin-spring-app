@@ -1,6 +1,6 @@
 package com.group.libraryapp.calculator
 
-import java.lang.IllegalArgumentException
+import kotlin.IllegalArgumentException
 
 fun main() {
     val calculatorTest = CalculatorTest()
@@ -12,8 +12,8 @@ class CalculatorTest {
     fun addTest() {
         val calculator = Calculator(5)
         calculator.add(3)
-        val expectedCalculator = Calculator(8)
-        if (calculator != expectedCalculator) {
+
+        if (calculator.number != 8) {
             throw IllegalArgumentException("addTest failed")
         }
     }
