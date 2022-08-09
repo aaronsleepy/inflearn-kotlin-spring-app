@@ -1,6 +1,6 @@
 package com.group.libraryapp.service.book
 
-import com.group.libraryapp.domain.book.JavaBook
+import com.group.libraryapp.domain.book.Book
 import com.group.libraryapp.domain.book.BookRepository
 import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import java.lang.IllegalArgumentException
 
 @SpringBootTest
 class BookServiceTest @Autowired constructor(
@@ -50,7 +49,7 @@ class BookServiceTest @Autowired constructor(
     @DisplayName("책 대출이 정상 동작한다")
     fun loanBook() {
         // given
-        bookRepository.save(JavaBook("이상한 나라의 앨리스"))
+        bookRepository.save(Book("이상한 나라의 앨리스"))
         val savedUser = userRepository.save(User("송준이", 23))
         val request = BookLoanRequest("송준이", "이상한 나라의 앨리스")
 
@@ -69,7 +68,7 @@ class BookServiceTest @Autowired constructor(
     @DisplayName("책이 이미 대출되었다면 신규 대출은 실패한다")
     fun loadBookFailed() {
         // given
-        bookRepository.save(JavaBook("이상한 나라의 앨리스"))
+        bookRepository.save(Book("이상한 나라의 앨리스"))
         val savedUser = userRepository.save(User("송준이", 23))
         userLoanHistoryRepository.save(UserLoanHistory(savedUser, "이상한 나라의 앨리스", false))
         val request = BookLoanRequest("송준이", "이상한 나라의 앨리스")
@@ -86,7 +85,7 @@ class BookServiceTest @Autowired constructor(
     @DisplayName("책 반납이 정상 동작한다")
     fun returnBook() {
         // given
-        bookRepository.save(JavaBook("이상한 나라의 앨리스"))
+        bookRepository.save(Book("이상한 나라의 앨리스"))
         val savedUser = userRepository.save(User("송준이", 23))
         userLoanHistoryRepository.save(UserLoanHistory(savedUser, "이상한 나라의 앨리스", false))
         val request = BookReturnRequest("송준이", "이상한 나라의 앨리스")
