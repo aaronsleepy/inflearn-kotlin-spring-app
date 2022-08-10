@@ -35,7 +35,7 @@ class UserService (
     @Transactional
     fun deleteUser(name: String) {
         val user = userRepository.findByName(name)
-            .orElseThrow(::IllegalArgumentException)
+            ?: throw IllegalArgumentException()
         userRepository.delete(user)
     }
 }
